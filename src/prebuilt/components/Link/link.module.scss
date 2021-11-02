@@ -1,0 +1,32 @@
+@import "src/prebuilt/scss/variables";
+@import "src/prebuilt/scss/mixins";
+
+.root {
+  display: inline-flex;
+  text-decoration: none;
+  transition: color 0.15s ease-out;
+
+  &.primary {
+    color: map-get($colors, typography-main);
+
+    &:hover {
+      color: map-get($colors, primary-medium);
+    }
+  }
+
+  &.primary-negative {
+    color: map-get($colors, background);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &.sm {
+    @include applyPreset(createPreset(14px, 400, 22px, normal));
+  }
+
+  &.md {
+    @include applyPreset(createPreset(16px, 400, 24px, normal));
+  }
+}

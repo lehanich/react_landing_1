@@ -1,0 +1,26 @@
+@import "src/prebuilt/scss/mixins";
+
+.root {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: stretch;
+  width: 100%;
+
+  &__item {
+    margin-bottom: 16px;
+
+    @include breakpoint(md) {
+      margin-bottom: 24px;
+    }
+
+    @include breakpoint(lg) {
+      margin-bottom: 32px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

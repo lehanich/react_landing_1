@@ -1,0 +1,22 @@
+@import "src/prebuilt/scss/variables";
+@import "src/prebuilt/scss/mixins";
+
+.root {
+  @include container();
+
+  animation: fadeIn 0.15s ease-in-out forwards;
+
+  &.has_header {
+    padding-top: 76px;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

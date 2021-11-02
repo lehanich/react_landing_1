@@ -1,0 +1,36 @@
+@import "src/prebuilt/scss/variables";
+@import "src/prebuilt/scss/mixins";
+
+.root {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: map-get($colors, background);
+  box-shadow: rgb(0 0 0 / 8%) 0px 1px 12px;
+  z-index: 999;
+
+  &__content {
+    @include container();
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+  }
+
+  &__links {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+
+    & > * {
+      margin-right: 16px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}

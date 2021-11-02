@@ -1,0 +1,104 @@
+@import "src/prebuilt/scss/variables";
+@import "src/prebuilt/scss/mixins";
+
+.root {
+  margin-bottom: 48px;
+
+  @include breakpoint(md) {
+    margin-bottom: 72px;
+  }
+
+  @include breakpoint(lg) {
+    margin-bottom: 92px;
+  }
+
+  &__title {
+    margin-bottom: 16px;
+
+    @include breakpoint(md) {
+      margin-bottom: 24px;
+    }
+  }
+
+  &__schedule {
+    display: flex;
+    flex-flow: column nowrap;
+    align-content: stretch;
+  }
+
+  &__day {
+    position: relative;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background-color: map-get($colors, border-main);
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+
+      &::after {
+        content: unset;
+      }
+    }
+  }
+
+  &__date {
+    position: relative;
+    width: 100%;
+    margin-bottom: 8px;
+
+    @include breakpoint(md) {
+      width: auto;
+      margin-bottom: 0;
+      padding-top: 58px;
+    }
+  }
+
+  &__time {
+    font-weight: 600;
+    white-space: nowrap;
+
+    @include breakpoint(md) {
+      font-size: 18px;
+      line-height: 26px;
+    }
+  }
+
+  &__order {
+    display: inline-block;
+    margin-right: 12px;
+    font-size: 24px;
+    font-weight: 900;
+    color: map-get($colors, primary-medium);
+    opacity: 0.1;
+
+    @include breakpoint(md) {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      margin-right: unset;
+      font-size: 80px;
+    }
+  }
+
+  &__description {
+    max-width: 100%;
+    white-space: pre-line;
+
+    @include breakpoint(md) {
+      max-width: 60%;
+      padding-top: 18px;
+    }
+  }
+}

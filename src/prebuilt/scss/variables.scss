@@ -1,0 +1,25 @@
+$colors: (
+  background: #fff,
+  primary-light: #edf2ff,
+  primary-medium: #1f5bff,
+  typography-main: #0f1113,
+  border-main: #e6e6f3,
+);
+
+$breakpoints: (
+  xss: 280px,
+  xs: 320px,
+  sm: 576px,
+  md: 768px,
+  lg: 1280px,
+  xl: 1440px,
+);
+
+$container-widths: (
+  xss: calc(100% - 24px),
+  xs: calc(100% - 32px),
+  sm: calc(100% - 48px),
+  md: calc(100% - 64px),
+  lg: 1140px,
+  xl: 1240px,
+);

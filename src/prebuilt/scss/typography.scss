@@ -1,0 +1,49 @@
+@import "./mixins.scss";
+@import "./variables.scss";
+
+$font: "Montserrat";
+$presets: (
+  h1: (
+    xss: createPreset(28px, 700, 36px, normal),
+    xs: createPreset(32px, 700, 40px, normal),
+    lg: createPreset(48px, 700, 56px, normal),
+  ),
+  h2: (
+    xss: createPreset(24px, 700, 32px, normal),
+    lg: createPreset(36px, 700, 44px, normal),
+  ),
+  h3: (
+    xss: createPreset(18px, 700, 26px, normal),
+    md: createPreset(22px, 700, 30px, normal),
+    lg: createPreset(26px, 700, 34px, normal),
+  ),
+  h4: (
+    xss: createPreset(18px, 700, 26px, normal),
+    md: createPreset(20px, 700, 28px, normal),
+    lg: createPreset(24px, 700, 32px, normal),
+  ),
+  subtitle1: (
+    xss: createPreset(16px, 500, 24px, normal),
+    md: createPreset(20px, 500, 28px, normal),
+  ),
+  paragraph1: (
+    xss: createPreset(14px, 500, 22px, normal),
+    sm: createPreset(16px, 500, 24px, normal),
+  ),
+);
+
+@each $preset-name, $preset-sizes in $presets {
+  .t-#{$preset-name} {
+    @each $breakpoint-name, $props in $preset-sizes {
+      @include breakpoint($breakpoint-name) {
+        @include applyPreset($props);
+      }
+    }
+  }
+}
+
+@each $color-name, $color-value in $colors {
+  .c-#{$color-name} {
+    color: $color-value;
+  }
+}
