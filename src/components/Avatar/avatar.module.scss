@@ -1,0 +1,14 @@
+.root {
+	display: block;
+	width: 200px;
+	height: 200px;
+	background-repeat: no-repeat;
+	background-position: top;
+	background-size: cover;
+	border-radius: 5px;
+
+	&.md {
+		width: 200px;
+		height: 200px;
+	}
+}
