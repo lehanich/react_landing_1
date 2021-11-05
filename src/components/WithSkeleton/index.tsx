@@ -1,4 +1,7 @@
 import React from "react";
+import { rootCertificates } from "tls";
+import { Loader } from "../Loader"
+import styles from "./withSkeleton.module.scss";
 
 export type WithSkeletonProps = {
     readonly isLoading?: boolean;
@@ -23,7 +26,10 @@ export const WithSkeleton: React.FC<WithSkeletonProps> = ({
     }
 
     if (isLoading) {
-        return <>{skeletonSlot || "loading..."}</>;
+        return <div className={styles.root}>
+        {skeletonSlot ||
+            <Loader/>
+        }</div>;
     }
 
     if (!isLoading && isEmpty && !error) {

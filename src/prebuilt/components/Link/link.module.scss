@@ -22,11 +22,35 @@
     }
   }
 
+  &.primary-blue {
+    color: map-get($colors, primary-medium);
+
+    &:hover {
+      color: map-get($colors, typography-main);
+      text-decoration: underline;
+    }
+  }
+
+  &.profile-tag {
+    color: var(--c-text);
+    background-color: #f7f8f9;
+    border: 1px solid #e7e8ea;
+		&:hover {
+			color: #0c8;
+			background-color: #e5faf3;
+			border: 1px solid #0c8;
+		}
+  }
+
   &.sm {
     @include applyPreset(createPreset(14px, 400, 22px, normal));
   }
 
   &.md {
+    @include applyPreset(createPreset(16px, 400, 24px, normal));
+  }
+
+  &.bg {
     @include applyPreset(createPreset(16px, 400, 24px, normal));
   }
 }

@@ -5,7 +5,7 @@ import { Link as RouterLink } from "react-router-dom";
 
 export type LinkProps = {
   readonly href: string;
-  readonly theme?: "primary" | "primary-negative";
+  readonly theme?: "primary" | "primary-negative" | "primary-blue" | "profile-tag";
   readonly size?: "inherit" | "sm" | "md";
   readonly target?: React.AnchorHTMLAttributes<HTMLHRElement>["target"];
   readonly className?: string;

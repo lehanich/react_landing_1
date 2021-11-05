@@ -1,0 +1,40 @@
+.root {
+	&__searchItem {
+		cursor: pointer;
+		padding: 3px;
+		background-color: #fff;
+		transition: background-color 1s linear;
+		&:hover {
+			background-color: #e6f7ff;
+		}
+	}
+	&__profileItem {
+		margin-top: 5px;
+    font-size: 11px;
+    line-height: 15px;
+    padding: 2px 5px;
+    border-radius: 10px;
+    white-space: nowrap;
+    cursor: pointer;
+		margin-left: 5px;
+	}
+}
+
+.search {
+
+}
+
+.profile {
+
+}
+.search__result-list{
+	// max-height: 200px;
+  // position: absolute;
+  // width: 100%;
+  // background: #fff;
+  // overflow: overlay;
+  // display: block;
+  // padding: 10px;
+  // border: 1px solid rgba(23, 26, 31, 0.1);
+	// border-radius: 0 0 10px 10px;
+}

@@ -9,6 +9,7 @@ import { Typography } from "../../prebuilt/components/Typography";
 import { Listing } from "../../prebuilt/components/Listing";
 import { getTagById } from "../../app/features/tag/thunks/getTagById";
 import { MentorPreview } from "../../components/MentorPreview";
+import { Search } from "../../components/Search"
 
 export const MentorsPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -25,6 +26,7 @@ export const MentorsPage: React.FC = () => {
 
   return (
     <Page title="Менторы - Solvery.io">
+      <Search />
       <Typography tag="h1" preset="h1">
         Знакомьтесь - менторы Solvery.io!
       </Typography>

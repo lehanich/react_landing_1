@@ -1,21 +1,67 @@
 .root {
   display: flex;
   flex-direction: row;
+	justify-content: space-between;
+
 	background-color: #fff;
 	padding: 24px;
 	border-radius: 10px;
 	border: 1px solid rgba(23,26,31,.1);
 
 	&__avatar {
-		
+		flex-basis: 10%;
+	}
+
+	&__blockAvatar {
+		margin-right: 20px;
 	}
 
 	&__info {
+		flex-basis: 80%;
+	}
 
+	&__previewInfo {
+		margin-right: 20px;
+	}
+
+	&__infoBlock {
+		margin-bottom: 5px;
+	}
+
+	&__userName {
+		display: block;
+		font-size: 1.5em;
+    font-weight: 600;
+		color: #0f1113;
+	}
+
+	&__userGEO {
+		display: block;
+		color: #b6bdc1;
+		font-size: 1em;
+	}
+  
+	&__userSessions {
+		display: block;
+		color: #b6bdc1;
+		font-size: 1em;
+	}
+
+	&__userSessionsNumber {
+		color: #0f1113;
+		font-size: 1em;
+		font-weight: 600;
+	}
+
+	&__userCompany {
+		display: block;
+		color: #0f1113;
+		font-size: 1em;
 	}
 
 	&__price {
-		
+		width: 200px;
+		flex-basis: 10%;
 	}
 
 }

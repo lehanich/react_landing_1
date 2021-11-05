@@ -1,0 +1,226 @@
+@import "../../prebuilt/scss/variables";
+
+.root {
+  font-size: 10px;
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  text-align: center;
+  // border: 1px solid #ccc;
+  border-collapse: collapse;
+  vertical-align: top;
+  background-color: map-get($colors, spinner-background);
+  
+  & .loader_1 {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 50%;
+    margin: -25px auto 0;
+    border-radius: 50%;
+    background: map-get($colors, spinner-color);
+    background: -moz-linear-gradient(left, map-get($colors, spinner-color) 10%, rgba(255, 255, 255, 0) 50%);
+    background: -webkit-linear-gradient(left, map-get($colors, spinner-color) 10%, rgba(255, 255, 255, 0) 50%);
+    background: -o-linear-gradient(left, map-get($colors, spinner-color) 10%, rgba(255, 255, 255, 0) 50%);
+    background: -ms-linear-gradient(left, map-get($colors, spinner-color) 10%, rgba(255, 255, 255, 0) 50%);
+    background: linear-gradient(to right, map-get($colors, spinner-color) 10%, rgba(255, 255, 255, 0) 50%);
+    position: relative;
+    -webkit-animation: loader_1 1.5s infinite linear;
+    animation: loader_1 1.5s infinite linear;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+  
+    &:before {
+      content: '';
+      width: 25px;
+      height: 25px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: map-get($colors, spinner-color);
+      border-radius: 100% 0 0 0;
+    }
+    
+    &:after {
+      content: '';
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: map-get($colors, spinner-background);
+      margin: auto;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+    }
+  }
+  @-webkit-keyframes loader_1 {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes loader_1 {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  
+  & .loader_2 {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 50%;
+    border-radius: 50%;
+    position: relative;
+    -webkit-animation: loader_2 0.9s 0.35s ease alternate infinite;
+    animation: loader_2 0.9s 0.35s ease alternate infinite;
+    margin: -20px auto 0;
+  
+    &:after,
+    &:before {
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      animation: loader_2 0.9s ease alternate infinite;
+      -webkit-animation: loader_2 0.9s ease alternate infinite;
+    }
+    
+    &:before {
+      left: -20px;
+      animation-delay: 0.2s;
+    }
+    
+    &:after {
+      right: -20px;
+      animation-delay: 0.5s;
+    }
+  }
+  @keyframes loader_2 {
+    0% {
+      box-shadow: 0 15px 0 -15px map-get($colors, spinner-color);
+    }
+    100% {
+      box-shadow: 0 15px 0 map-get($colors, spinner-color);
+    }
+  }
+  
+  @-webkit-keyframes loader_2 {
+    0% {
+      box-shadow: 0 15px 0 -15px map-get($colors, spinner-color);
+    }
+    100% {
+      box-shadow: 0 15px 0 map-get($colors, spinner-color);
+    }
+  }
+  
+  & .loader_3 {
+    width: 50px;
+    height: 60px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin: -30px auto 0;
+    text-align: center;
+  }
+  
+  & .loader_3_item {
+    background-color: map-get($colors, spinner-color);
+    height: 100%;
+    width: 6px;
+    display: inline-block;
+    -webkit-animation: loader_3 1.2s infinite ease-in-out;
+    animation: loader_3 1.2s infinite ease-in-out;
+    margin-right: 2px;;
+  }
+  
+  & .loader_3_item_2 {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+  }
+  
+  & .loader_3_item_3 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+  }
+  
+  & .loader_3_item_4 {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+  }
+  
+  & .loader_3_item_5 {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+  }
+  
+  @-webkit-keyframes loader_3 {
+    0%,
+    40%,
+    100% {
+      -webkit-transform: scaleY(0.4)
+    }
+    20% {
+      -webkit-transform: scaleY(1.0)
+    }
+  }
+  
+  @keyframes loader_3 {
+    0%,
+    40%,
+    100% {
+      transform: scaleY(0.4);
+      -webkit-transform: scaleY(0.4);
+    }
+    20% {
+      transform: scaleY(1.0);
+      -webkit-transform: scaleY(1.0);
+    }
+  }
+  
+  & .loader_4 {
+    width: 10px;
+    height: 10px;
+    position: relative;
+    animation: loader_4 1s ease infinite;
+    top: 50%;
+    margin: -30px auto 0 auto;
+  }
+  
+  @-webkit-keyframes loader_4 {
+    0%, 100% {
+      box-shadow: -10px 15px 0 map-get($colors, spinner-color), 10px 15px 0 rgba(255, 255, 255, 0.2), 10px 36px 0 rgba(255, 255, 255, 0.2), -10px 36px 0 rgba(255, 255, 255, 0.2); }
+    25% {
+      box-shadow: -10px 15px 0 rgba(255, 255, 255, 0.2), 10px 15px 0 map-get($colors, spinner-color), 10px 36px 0 rgba(255, 255, 255, 0.2), -10px 36px 0 rgba(255, 255, 255, 0.2); }
+    50% {
+      box-shadow: -10px 15px 0 rgba(255, 255, 255, 0.2), 10px 15px 0 rgba(255, 255, 255, 0.2), 13px 46px 0 map-get($colors, spinner-color), -10px 36px 0 rgba(255, 255, 255, 0.2); }
+    75% {
+      box-shadow: -10px 15px 0 rgba(255, 255, 255, 0.2), 10px 15px 0 rgba(255, 255, 255, 0.2), 10px 36px 0 rgba(255, 255, 255, 0.2), -10px 36px 0 map-get($colors, spinner-color); } }
+  
+  @keyframes loader_4 {
+    0%, 100% {
+      box-shadow: -10px 15px 0 map-get($colors, spinner-color), 10px 15px 0 rgba(255, 255, 255, 0.2), 10px 36px 0 rgba(255, 255, 255, 0.2), -10px 36px 0 rgba(255, 255, 255, 0.2); }
+    25% {
+      box-shadow: -10px 15px 0 rgba(255, 255, 255, 0.2), 10px 15px 0 map-get($colors, spinner-color), 10px 36px 0 rgba(255, 255, 255, 0.2), -10px 36px 0 rgba(255, 255, 255, 0.2); }
+    50% {
+      box-shadow: -10px 15px 0 rgba(255, 255, 255, 0.2), 10px 15px 0 rgba(255, 255, 255, 0.2), 10px 36px 0 map-get($colors, spinner-color), -10px 36px 0 rgba(255, 255, 255, 0.2); }
+    75% {
+      box-shadow: -10px 15px 0 rgba(255, 255, 255, 0.2), 10px 15px 0 rgba(255, 255, 255, 0.2), 10px 36px 0 rgba(255, 255, 255, 0.2), -10px 36px 0 map-get($colors, spinner-color); }
+  }
+}

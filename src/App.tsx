@@ -29,8 +29,7 @@ export const App: React.FC<AppProps> = () => {
           <Route exact path={ROUTES.mentors.url}>
             <MentorsPage />
           </Route>
-          <Route exact path={ROUTES.mentor.url} render={ ( props )  => <MentorPage { ...props } /> }>
-            {/* <MentorPage /> */}
+          <Route exact path="/mentor/:mentorId" render={ ( props )  => <MentorPage { ...props } /> }>
           </Route>
         </Switch>
       </Router>
