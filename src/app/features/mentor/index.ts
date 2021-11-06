@@ -34,6 +34,7 @@ const mentorSlice = createSlice({
 
     builder.addCase(getMentors.fulfilled, (state, action) => {
       state.isLoading = false;
+      state.entities = [];
       state.entities = action.payload.mentors;
       state.totalMentorsCount = action.payload.totalMentorsCount;
     });

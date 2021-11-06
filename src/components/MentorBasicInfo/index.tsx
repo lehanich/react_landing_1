@@ -23,8 +23,8 @@ export const MentorBasicInfo: React.FC<MentorPreviewProps> = ({
 		<div className={clsx(styles.root__info)}>
 			{mode === "preview" &&
 				<Link
-					className={clsx(styles.root__userName, styles.root__info)}
-					href={"/mentor/"+mentor.id}
+					className={clsx(styles.root__name, styles.root__info)}
+					href={"/mentors/"+mentor.id}
 				>
 						{mentor.firstName} {mentor.lastName}
 				</Link>

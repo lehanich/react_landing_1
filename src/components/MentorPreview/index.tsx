@@ -7,6 +7,7 @@ import { Avatar } from "../Avatar"
 import { TagsList } from "../TagsList"
 import { Typography } from "../../prebuilt/components/Typography"
 import { MentorBasicInfo } from "../MentorBasicInfo"
+import { Price } from "../Price"
 import styles from "./mentorPreview.module.scss";
 
 export type MentorPreviewProps = {
@@ -25,8 +26,12 @@ export const MentorPreview: React.FC<MentorPreviewProps> = ({
 			<Avatar avatar={mentor.avatar} size="md"/>
 		</div>}
 		<MentorBasicInfo mentor={mentor} className={styles.root__info}></MentorBasicInfo>
-		{mode === "preview" && <div className={styles.root__price}>
-      {mentor.theme.price}Р / час
-		</div>}
+		{mode === "preview" &&
+			<Price tag="div"
+				price={mentor.theme.price}
+				currency={mentor.theme.currency}
+				className={clsx(styles.root__price)}>
+			</Price>
+		}
   </div>
 }

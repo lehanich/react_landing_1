@@ -1,0 +1,33 @@
+.root {
+  &__pageBlock {
+    margin-bottom: 20px;
+  }
+  &__header {
+
+  }
+  &__all {
+
+  }
+  &__button {
+    color: #fff;
+    border-color: #09f;
+    background-color: #09f;
+
+		display: inline-block;
+    padding: .625rem 1.125rem;
+    border-radius: 5px;
+    font-size: .875rem;
+    line-height: 1rem;
+    text-align: center;
+    font-weight: 500;
+    cursor: pointer;
+    outline: none;
+		&:hover {
+			background-color: #07f;
+		}
+  }
+	&__paginationLine {
+		display: flex;
+		justify-content: space-between;
+	}
+}

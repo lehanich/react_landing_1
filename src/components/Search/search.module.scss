@@ -6,6 +6,16 @@
 		margin-bottom: 10px;
 	}
 
+	&__searchItem {
+		cursor: pointer;
+		padding: 3px;
+		background-color: #fff;
+		transition: background-color 1s linear;
+		&:hover {
+			background-color: #e6f7ff;
+		}
+	}
+
 	&__input {
 		width: 100%;
 		border: 1px solid #40a9ff;
@@ -38,6 +48,7 @@
 		position: relative;
 	}
 	&__result {
+		top: 28px;
 		position: absolute;
 		display: block;
 		height: 0px;
@@ -73,6 +84,38 @@
     // -o-transition: .3s;
     // transition: .3s;
 	}
+	&__tagsButton {
+		display: inline-block;
+		margin-top: 3px;
+    margin-right: 4px;
+    font-size: .9em;
+    background-color: #fafafa;
+    border: 1px solid #0f1113;
+    height: 24px;
+    line-height:22px;
+		background-color: transparent!important;
+    border-radius: 10px;
+    color: #0f1113;
+		cursor: pointer;
+	
+	}
+	&__button {
+    color: #fff;
+    border-color: #09f;
+    background-color: #09f;
 
+		display: inline-block;
+    padding: .625rem 1.125rem;
+    border-radius: 5px;
+    font-size: .875rem;
+    line-height: 1rem;
+    text-align: center;
+    font-weight: 500;
+    cursor: pointer;
+    outline: none;
+		&:hover {
+			background-color: #07f;
+		}
+  }
 }
 

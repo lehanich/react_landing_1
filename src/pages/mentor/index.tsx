@@ -18,10 +18,10 @@ import { getTagById } from "../../app/features/tag/thunks/getTagById";
 import { MentorBasicInfo } from "../../components/MentorBasicInfo";
 import { PriceBlock } from "../../components/PriceBlock";
 import { Avatar } from "../../components/Avatar"
-import { IMentor } from "../../app/interfaces/IMentor"
-import { Job } from "./partials/Job"
-import { Education } from "./partials/Education"
-import styles from "./mentorPage.module.scss"
+import { IMentor } from "../../app/interfaces/IMentor";
+import { Job } from "./partials/Job";
+import { Education } from "./partials/Education";
+import styles from "./mentorPage.module.scss";
 
 type MentorParams = { mentorId?: string };
 

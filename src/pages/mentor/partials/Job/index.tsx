@@ -3,7 +3,7 @@ import React from "react";
 import { Typography } from "../../../../prebuilt/components/Typography";
 import styles from "./job.module.scss";
 
-export type jobProps = {
+export type JobProps = {
   readonly className?: string;
   readonly jobs: any;
 };
@@ -12,7 +12,7 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
 
-export const Job: React.FC<jobProps> = ({ className, jobs }) => {
+export const Job: React.FC<JobProps> = ({ className, jobs }) => {
 
   function displayDate (getDate:number) {
     const d= new Date(getDate);

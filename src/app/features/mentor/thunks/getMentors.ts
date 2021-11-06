@@ -4,8 +4,12 @@ import { MentorApi } from './MentorApi';
 
 export const getMentors = createAsyncThunk (
   'mentor/getFiltered',
-  async () => {
-    const mentors = await MentorApi.POST<IMentors>('getFiltered');
+  async (allFilters?: any) => {
+    const mentors = await MentorApi.POST<IMentors>('getFiltered',
+      {
+        filters: { ...allFilters.filters },
+        pagination: { ...allFilters.pagination }
+      });
     return mentors;
   }
 )
