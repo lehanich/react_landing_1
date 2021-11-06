@@ -24,6 +24,9 @@ export class Api {
         
         const response = await fetch(`${this.baseUrl}/${url}`, {
           method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
           body,
         });
 

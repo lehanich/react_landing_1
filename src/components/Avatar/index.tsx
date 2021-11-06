@@ -5,7 +5,7 @@ import styles from "./avatar.module.scss";
 export type AvatarProps = {
   readonly avatar: string;
 	readonly className?: any;
-	readonly size: "stretch" | "sm" | "md" | "lg";
+	readonly size: string | "stretch" | "sm" | "md" | "lg";
 };
 
 export const Avatar: React.FC<AvatarProps> = ({
@@ -20,11 +20,16 @@ export const Avatar: React.FC<AvatarProps> = ({
 		}
 	};
 
-  return <>
-		<span
-			className={clsx(styles.root, styles[size], className)}
-			style={style.avatar}
-		>
-		</span>
-  </>
+  return (
+		<>
+	  {size === "lg" && <img src={'https://solvery.io/'+avatar} alt="avatar"  width="95%" height="auto"/>}
+		{size !== "lg" &&
+			<span
+				className={clsx(styles.root, styles[size], className)}
+				style={style.avatar}
+			>
+			</span>
+		}
+		</>
+  );
 }

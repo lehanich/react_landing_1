@@ -1,0 +1,33 @@
+.root {
+  &__wrap {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__sidebar {
+    margin-right: 20px;
+    flex-basis: 30%;
+  }
+
+  &__content {
+    flex-basis: 70%;
+  }
+
+  &__pageBlock {
+    margin-bottom: 20px;
+  }
+
+	&__pageHeader {
+    margin-bottom: 10px;
+  }
+
+  &__list {
+		margin-left: 20px;
+  }
+
+  &__listItem {
+    text-align: left;
+    list-style: circle;
+		margin-bottom: 10px;
+  }
+}

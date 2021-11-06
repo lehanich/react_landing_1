@@ -1,10 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IMentor } from '../../interfaces/IMentor';
+import { IMentorFull } from '../../interfaces/IMentorFull';
 import { getMentors } from './thunks/getMentors';
+import { getMentorById } from './thunks/getMentorById';
 
 export type MentorState = {
   // mentors: {
     entities: IMentor[];
+    mentorPage?: IMentorFull;
     totalMentorsCount: number,
     isLoading: boolean;
     error: string | undefined;
@@ -40,6 +43,19 @@ const mentorSlice = createSlice({
       state.error = action.error.message;
     });
 
+    builder.addCase(getMentorById.pending, (state) => {
+      state.isLoading = true;
+    });
+
+    builder.addCase(getMentorById.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.mentorPage = action.payload.user;
+    });
+
+    builder.addCase(getMentorById.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message;
+    });
   },
 });
 

@@ -1,0 +1,11 @@
+.root {
+	display: flex;
+	flex-direction: row;
+  &__time {
+		flex-basis: 30%;
+	}
+
+	&__info {
+		flex-basis: 70%;
+	}
+}

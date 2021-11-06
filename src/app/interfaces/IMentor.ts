@@ -19,7 +19,7 @@ export interface IMentor extends IEntity {
   readonly sessionsCount: number;
   readonly studentsCount: number;
   readonly theme: any;
-  readonly timeZone: string;
+  readonly timezone: string;
   readonly type: string;
   readonly userRating: any;
   readonly username: string;

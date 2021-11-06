@@ -1,0 +1,39 @@
+.root {
+  background-color: #fff;
+  
+  &__info {
+    margin-bottom: 5px;
+  }
+  
+  &__name {
+    display: block;
+    font-size: 1.5em;
+  	font-weight: 600;
+    color: #0f1113;
+  }
+  
+  &__geo {
+    display: block;
+    color: #b6bdc1;
+    font-size: 1em;
+  }
+    
+  &__sessions {
+    display: block;
+    color: #b6bdc1;
+    font-size: 1em;
+  }
+  
+  &__sessionsNumber {
+    color: #0f1113;
+    font-size: 1em;
+    font-weight: 600;
+	}
+  
+  &__company {
+    display: block;
+    color: #0f1113;
+    font-size: 1em;
+	}
+  
+}
