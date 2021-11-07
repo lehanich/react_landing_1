@@ -1,6 +1,6 @@
 import React from "react";
 import { rootCertificates } from "tls";
-import { Loader } from "../Loader"
+import { Loader } from "../Loader";
 import styles from "./withSkeleton.module.scss";
 
 export type WithSkeletonProps = {

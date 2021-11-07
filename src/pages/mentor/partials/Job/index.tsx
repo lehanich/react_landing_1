@@ -22,7 +22,7 @@ export const Job: React.FC<JobProps> = ({ className, jobs }) => {
   return (
     <>
       {jobs !== undefined && (jobs as Array<any>).map((item: any) => (
-        <div className={styles.root}>
+        <div key={item.id} className={styles.root}>
           <div className={styles.root__time}>
             {displayDate(item.startDate)}&nbsp;&mdash;&nbsp;
             {item.isUntilNow && "настоящее время"}

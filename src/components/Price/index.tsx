@@ -1,8 +1,6 @@
 import clsx from "clsx";
 import React from "react";
-// import { Link } from "react-router-dom";
-// import styles from "./mentorPreview.module.scss";
-import { Typography } from "../../prebuilt/components/Typography"
+import { Typography } from "../../prebuilt/components/Typography";
 
 export type MentorPreviewProps = {
   readonly price: number;

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IMentorPage } from '../../../interfaces/IMentorPage'
+import { IMentorPage } from '../../../interfaces/IMentorPage';
 
 import { MentorPageApi } from './MentorApi';
 

@@ -12,7 +12,9 @@
   &__content {
     flex-basis: 70%;
   }
-
+	&__content_mobile {
+    flex-basis: 100%;
+  }
   &__pageBlock {
     margin-bottom: 20px;
   }
@@ -31,4 +33,9 @@
     list-style: circle;
 		margin-bottom: 10px;
   }
+
+	&__avatar_mobile {
+		margin-bottom: 15px;
+  }
+
 }

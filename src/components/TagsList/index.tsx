@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import clsx from "clsx";
-import { ITag } from "../../app/interfaces/ITag"
+import { ITag } from "../../app/interfaces/ITag";
 // import { Link } from "react-router-dom";
 import { Link } from "../../prebuilt/components/Link";
 import styles from "./tagsList.module.scss";
@@ -16,15 +16,8 @@ export const TagsList: React.FC<TagsProps> = ({
   className,
   mode
 }) => {
-  console.log(tags)
-  // const [tagsOut,setTagsOut] = useState([])
-
-  // useEffect(() => {
-  //   setTagsOut(tags);
-  // }, []);
 
   useEffect(() => {
-    // setTagsOut(tags);
     console.log(tags)
   }, [tags]);
 

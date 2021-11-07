@@ -3,40 +3,27 @@ import React from "react";
 // import { Link } from "react-router-dom";
 import { Link } from "../../prebuilt/components/Link";
 import { IMentor } from  "../../app/interfaces/IMentor";
-import { Avatar } from "../Avatar"
-import { TagsList } from "../TagsList"
-import { Typography } from "../../prebuilt/components/Typography"
+import { TagsList } from "../TagsList";
+import { Typography } from "../../prebuilt/components/Typography";
+import { MentorHead } from "../MentorHead";
 import styles from "./mentorBasicInfo.module.scss";
 
 export type MentorPreviewProps = {
   readonly mentor: IMentor;
 	readonly className?: string;
 	readonly mode?: string | "preview" | "full";
+	readonly displayName?: boolean;
 };
 
 export const MentorBasicInfo: React.FC<MentorPreviewProps> = ({
   mentor,
 	className,
-	mode = "preview"
+	mode = "preview",
+	displayName
 }) => {
   return <div className={clsx(styles.root, className)}>  
 		<div className={clsx(styles.root__info)}>
-			{mode === "preview" &&
-				<Link
-					className={clsx(styles.root__name, styles.root__info)}
-					href={"/mentors/"+mentor.id}
-				>
-						{mentor.firstName} {mentor.lastName}
-				</Link>
-			}
-			{mode === "full" && 
-				<Typography tag="h1" className={clsx(styles.root__userName, styles.root__info)}>
-					{mentor.firstName} {mentor.lastName}
-				</Typography>
-			}
-			<Typography tag="span" className={clsx(styles.root__geo, styles.root__info)}>
-				{mentor.city}, {mentor.country} / {mentor.timezone}
-			</Typography>
+			{displayName &&	<MentorHead mentor={mentor} mode = {mode}/> }
 			<Typography tag="p"
 				color="typography-main"
 				className={clsx(styles.root__company, styles.root__info)}>

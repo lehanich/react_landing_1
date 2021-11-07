@@ -22,8 +22,15 @@ export const Avatar: React.FC<AvatarProps> = ({
 
   return (
 		<>
-	  {size === "lg" && <img src={'https://solvery.io/'+avatar} alt="avatar"  width="95%" height="auto"/>}
-		{size !== "lg" &&
+	  {size === "lg" && <div className={className}><img src={'https://solvery.io/'+avatar} alt="avatar"  width="95%" height="auto"/></div>}
+		{size === "sm" &&
+			<span
+				className={clsx(styles.root, styles[size], className)}
+				style={style.avatar}
+			>
+			</span>
+		}
+		{size !== "lg" && size !== "sm" &&
 			<span
 				className={clsx(styles.root, styles[size], className)}
 				style={style.avatar}

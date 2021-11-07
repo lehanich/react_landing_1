@@ -8,16 +8,34 @@
 	border-radius: 10px;
 	border: 1px solid rgba(23,26,31,.1);
 
+	&_mobile {
+		flex-direction: column;
+	}
+
 	&__avatar {
 		flex-basis: 10%;
+		margin-right: 20px;
+	}
+
+	&__avatar_mobile {
+		margin-right: 20px;
 	}
 
 	&__blockAvatar {
 		margin-right: 20px;
 	}
 
+	&__blockAvatar_mobile {
+		display: flex;
+		margin-bottom: 15px;
+	}
+
 	&__info {
 		flex-basis: 80%;
+	}
+
+	&__info_mobile {
+		margin-bottom: 15px;
 	}
 
 	&__previewInfo {

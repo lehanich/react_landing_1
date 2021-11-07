@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import React from "react";
-import { Price } from "../Price"
-import { Typography } from "../../prebuilt/components/Typography"
+import { Price } from "../Price";
+import { Typography } from "../../prebuilt/components/Typography";
 // import { Link } from "react-router-dom";
 import styles from "./price.module.scss";
 

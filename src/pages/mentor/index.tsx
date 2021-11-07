@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import clsx from "clsx";
+import React, { useEffect, useState } from "react";
 import {
     BrowserRouter as Router,
     Route,
@@ -6,21 +7,19 @@ import {
   } from "react-router-dom";
 import { Link } from "../../prebuilt/components/Link"
 import { PageBlock } from "../../prebuilt/components/PageBlock"
-import { increment, setValue } from "../../app/features/counter";
 import { getAllTags } from "../../app/features/tag/thunks/getAllTags";
 import { getMentorById } from "../../app/features/mentor/thunks/getMentorById";
 import { useAppDispatch, useAppSelector } from "../../app/hook";
 import { WithSkeleton } from "../../components/WithSkeleton";
 import { Page } from "../../prebuilt/components/Page";
 import { Typography } from "../../prebuilt/components/Typography";
-import { Listing } from "../../prebuilt/components/Listing";
-import { getTagById } from "../../app/features/tag/thunks/getTagById";
 import { MentorBasicInfo } from "../../components/MentorBasicInfo";
 import { PriceBlock } from "../../components/PriceBlock";
 import { Avatar } from "../../components/Avatar"
 import { IMentor } from "../../app/interfaces/IMentor";
 import { Job } from "./partials/Job";
 import { Education } from "./partials/Education";
+import { useBreakpoints } from "../../hooks/useBreakpoints"
 import styles from "./mentorPage.module.scss";
 
 type MentorParams = { mentorId?: string };
@@ -32,6 +31,8 @@ export const MentorPage: React.FC<RouteComponentProps<MentorParams>> = (props) =
   const {
     mentors
   } = useAppSelector();
+
+  const [breakpoint, setBreakpoint] = useState<number>(1024); 
 
   useEffect(() => {
     console.log(mentorId)
@@ -45,6 +46,11 @@ export const MentorPage: React.FC<RouteComponentProps<MentorParams>> = (props) =
   useEffect(() => {
     // console.log(mentorPage)
   }, [mentors.mentorPage]);
+  
+  useBreakpoints((breakpoint) => {
+    setBreakpoint(breakpoint);
+    console.log(breakpoint);
+  });
 
   return (
     <Page title="Ментор">
@@ -57,7 +63,7 @@ export const MentorPage: React.FC<RouteComponentProps<MentorParams>> = (props) =
         >
         {mentors.mentorPage !== undefined &&
           <>
-            <div className={styles.root__sidebar}>
+            {breakpoint >= 768 && <div className={styles.root__sidebar}>
 
               <PageBlock className={styles.root__pageBlock}>
                 <Avatar avatar={mentors.mentorPage.avatar} size="lg"/>
@@ -68,18 +74,19 @@ export const MentorPage: React.FC<RouteComponentProps<MentorParams>> = (props) =
                 <PriceBlock type="full" theme={mentors.mentorPage.theme}/>
               </PageBlock>
 
-            </div>
-            <div className={styles.root__content}>
+            </div>}
+            <div className={clsx(breakpoint >= 768 && styles.root__content, breakpoint < 768 && styles.root__content_mobile)}>
 
               <PageBlock className={styles.root__pageBlock}>
-                <MentorBasicInfo mentor={mentors.mentorPage as IMentor} mode="full" />
+                {breakpoint < 768 && <Avatar avatar={mentors.mentorPage.avatar} className={styles.root__avatar_mobile} size="lg"/>}
+                <MentorBasicInfo mentor={mentors.mentorPage as IMentor} displayName={true} mode="full" />
               </PageBlock>
 
               <PageBlock className={styles.root__pageBlock}>
                 <Typography tag="h3" className={styles.root__pageHeader}>С чем могу помочь</Typography>
                 <ul className={styles.root__list}>
                   {mentors.mentorPage.solutions !== undefined && (mentors.mentorPage.solutions as Array<any>).map((item: any) => (
-                    <li className={styles.root__listItem}>{item.description}</li>
+                    <li key={item.id} className={styles.root__listItem}>{item.description}</li>
                   ))}
                 </ul>
               </PageBlock>
