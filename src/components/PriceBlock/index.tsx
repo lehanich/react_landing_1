@@ -25,20 +25,31 @@ export const PriceBlock: React.FC<MentorPreviewProps> = ({
 				currency={theme.currency}
 				className={clsx(styles.root__price)}></Price>
 		</div>
-		{theme.mentorServices !== undefined && theme.mentorServices.messaging !== undefined &&
+		{theme.mentorServices !== undefined && theme.mentorServices.messaging !== undefined && theme.mentorServices.messaging.enabled &&
 			<>
 				<Typography tag="div" className={styles.root__smallHead}>Дополнительные услуги</Typography>
 				<div className={clsx(styles.root__row)}>
 					<Typography tag="div" className={clsx(styles.root__info)}>Неделя переписки</Typography>
-					<Price tag="div"
+					{theme.mentorServices.messaging.onDemand === false || theme.mentorServices.messaging.onDemand === undefined && <Price tag="div"
 						price={theme.mentorServices.messaging.price}
 						currency={theme.currency}
-						className={clsx(styles.root__price)}></Price>
+						className={clsx(styles.root__price)}></Price>}
+					{theme.mentorServices.messaging.onDemand && 
+						<Typography tag="div" className={clsx(styles.root__price)}>по запросу</Typography>
+					}
 				</div>
 				{theme.mentorServices.projectReview.enabled &&
 					<div className={clsx(styles.root__row)}>
 						<Typography tag="div" className={clsx(styles.root__info)}>Разбор проекта</Typography>
-						<Typography tag="div" className={clsx(styles.root__price)}>по запросу</Typography>
+						{theme.mentorServices.projectReview.onDemand === false || theme.mentorServices.projectReview.onDemand === undefined && 
+							<Price tag="div"
+							price={theme.mentorServices.projectReview.price}
+							currency={theme.currency}
+							className={clsx(styles.root__price)}></Price>
+						}
+						{theme.mentorServices.projectReview.onDemand && 
+							<Typography tag="div" className={clsx(styles.root__price)}>по запросу</Typography>
+						}
 					</div>
 				}
 			</>

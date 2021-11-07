@@ -82,6 +82,11 @@ export const MentorPage: React.FC<RouteComponentProps<MentorParams>> = (props) =
                 <MentorBasicInfo mentor={mentors.mentorPage as IMentor} displayName={true} mode="full" />
               </PageBlock>
 
+              {breakpoint < 768 && <PageBlock className={styles.root__pageBlock}>
+                <Typography tag="h3" className={styles.root__pageHeader}>Стоимость занятий</Typography>
+                <PriceBlock type="full" theme={mentors.mentorPage.theme}/>
+              </PageBlock>}
+
               <PageBlock className={styles.root__pageBlock}>
                 <Typography tag="h3" className={styles.root__pageHeader}>С чем могу помочь</Typography>
                 <ul className={styles.root__list}>
