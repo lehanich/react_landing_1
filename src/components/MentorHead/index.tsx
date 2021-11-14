@@ -2,14 +2,14 @@ import clsx from "clsx";
 import React from "react";
 // import { Link } from "react-router-dom";
 import { Link } from "../../prebuilt/components/Link";
-import { IMentor } from  "../../app/interfaces/IMentor";
+import { IMentorCard } from  "../../app/interfaces/IMentorCard";
 import { Typography } from "../../prebuilt/components/Typography";
 import styles from "./mentorHead.module.scss";
 
 export type MentorPreviewProps = {
-  readonly mentor: IMentor;
+  readonly mentor: IMentorCard;
 	readonly className?: string;
-	readonly mode?: string | "preview" | "full";
+	readonly mode?: "preview" | "full";
 };
 
 export const MentorHead: React.FC<MentorPreviewProps> = ({

@@ -2,16 +2,16 @@ import clsx from "clsx";
 import React from "react";
 // import { Link } from "react-router-dom";
 import { Link } from "../../prebuilt/components/Link";
-import { IMentor } from  "../../app/interfaces/IMentor";
+import { IMentorCard } from  "../../app/interfaces/IMentorCard";
 import { TagsList } from "../TagsList";
 import { Typography } from "../../prebuilt/components/Typography";
 import { MentorHead } from "../MentorHead";
 import styles from "./mentorBasicInfo.module.scss";
 
 export type MentorPreviewProps = {
-  readonly mentor: IMentor;
+  readonly mentor: IMentorCard;
 	readonly className?: string;
-	readonly mode?: string | "preview" | "full";
+	readonly mode?: "preview" | "full";
 	readonly displayName?: boolean;
 };
 

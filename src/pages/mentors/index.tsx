@@ -18,7 +18,7 @@ export const MentorsPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const {
     tag: { tags },
-    mentors
+    mentors: {listing}
   } = useAppSelector();
 
   const [getPagination, setPagination] = useState<any>({page: 1, limit: 10});
@@ -66,18 +66,18 @@ export const MentorsPage: React.FC = () => {
           </p>
         )} */}
         <WithSkeleton
-          isLoading={mentors.isLoading}
-          isEmpty={mentors.entities.length === 0}
-          error={mentors.error}
+          isLoading={listing.mentors.isLoading}
+          isEmpty={listing.mentors.entities === null || listing.mentors.entities.length === 0 }
+          error={listing.mentors.error}
         >
           {/* <Listing>
           {tags.entities.map((tag) => (
             <p key={tag.id}>{tag.nameRu}</p>
           ))}
           </Listing> */}
-          <Typography tag="p" className={styles.root__pageBlock}>Доступно {mentors.totalMentorsCount} настравников</Typography>
+          <Typography tag="p" className={styles.root__pageBlock}>Доступно {listing.mentors.count} настравников</Typography>
           <Listing className={styles.root__pageBlock}>
-            {mentors.entities.map((mentor) => (
+            {listing.mentors.entities !== null && listing.mentors.entities.map((mentor) => (
               <MentorPreview key={mentor.id} mentor={mentor}></MentorPreview>
             ))}
           </Listing>

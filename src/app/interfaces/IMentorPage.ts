@@ -1,6 +1,6 @@
 import { IEntity } from './IEntity';
-import { IMentorFull } from './IMentorFull';
+import { IMentor } from './IMentor';
 
 export interface IMentorPage extends IEntity {
-  readonly user: IMentorFull;
+  readonly user: IMentor;
 }

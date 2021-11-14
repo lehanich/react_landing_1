@@ -1,18 +1,19 @@
 import clsx from "clsx";
 import React, { useState } from "react";
 // import { Link } from "react-router-dom";
-import { IMentor } from  "../../app/interfaces/IMentor";
+// import { IMentor } from  "../../app/interfaces/IMentor";
 import { Avatar } from "../Avatar";
 import { MentorBasicInfo } from "../MentorBasicInfo";
 import { Price } from "../Price";
 import { useBreakpoints } from "../../hooks/useBreakpoints";
 import { MentorHead } from "../MentorHead";
 import styles from "./mentorPreview.module.scss";
+import { IMentorCard } from "../../app/interfaces/IMentorCard";
 
 export type MentorPreviewProps = {
-  readonly mentor: IMentor;
+  readonly mentor: IMentorCard;
 	readonly className?: string;
-	readonly mode?: string | "preview" | "full";
+	readonly mode?: "preview" | "full";
 };
 
 export const MentorPreview: React.FC<MentorPreviewProps> = ({

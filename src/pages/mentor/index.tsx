@@ -29,7 +29,7 @@ export const MentorPage: React.FC<RouteComponentProps<MentorParams>> = (props) =
   const { mentorId } = props.match.params; 
   const dispatch = useAppDispatch();
   const {
-    mentors
+    mentors: mentor
   } = useAppSelector();
 
   const [breakpoint, setBreakpoint] = useState<number>(1024); 
@@ -45,7 +45,7 @@ export const MentorPage: React.FC<RouteComponentProps<MentorParams>> = (props) =
 
   useEffect(() => {
     // console.log(mentorPage)
-  }, [mentors.mentorPage]);
+  }, [mentor.mentor.entity]);
   
   useBreakpoints((breakpoint) => {
     setBreakpoint(breakpoint);
@@ -57,40 +57,40 @@ export const MentorPage: React.FC<RouteComponentProps<MentorParams>> = (props) =
       <div className={styles.root__pageBlock}><Link href="/mentors">К списку менторов</Link></div>
       <div className={styles.root__wrap}>
         <WithSkeleton
-          isLoading={mentors.isLoading}
-          isEmpty={mentors.mentorPage === undefined}
-          error={mentors.error}
+          isLoading={mentor.mentor.isLoading}
+          isEmpty={mentor.mentor.entity === null}
+          error={mentor.mentor.error}
         >
-        {mentors.mentorPage !== undefined &&
+        {mentor.mentor.entity !== null &&
           <>
             {breakpoint >= 768 && <div className={styles.root__sidebar}>
 
               <PageBlock className={styles.root__pageBlock}>
-                <Avatar avatar={mentors.mentorPage.avatar} size="lg"/>
+                <Avatar avatar={mentor.mentor.entity.avatar} size="lg"/>
               </PageBlock>
 
               <PageBlock className={styles.root__pageBlock}>
                 <Typography tag="h3" className={styles.root__pageHeader}>Стоимость занятий</Typography>
-                <PriceBlock type="full" theme={mentors.mentorPage.theme}/>
+                <PriceBlock type="full" theme={mentor.mentor.entity.theme}/>
               </PageBlock>
 
             </div>}
             <div className={clsx(breakpoint >= 768 && styles.root__content, breakpoint < 768 && styles.root__content_mobile)}>
 
               <PageBlock className={styles.root__pageBlock}>
-                {breakpoint < 768 && <Avatar avatar={mentors.mentorPage.avatar} className={styles.root__avatar_mobile} size="lg"/>}
-                <MentorBasicInfo mentor={mentors.mentorPage as IMentor} displayName={true} mode="full" />
+                {breakpoint < 768 && <Avatar avatar={mentor.mentor.entity.avatar} className={styles.root__avatar_mobile} size="lg"/>}
+                <MentorBasicInfo mentor={mentor.mentor.entity as IMentor} displayName={true} mode="full" />
               </PageBlock>
 
               {breakpoint < 768 && <PageBlock className={styles.root__pageBlock}>
                 <Typography tag="h3" className={styles.root__pageHeader}>Стоимость занятий</Typography>
-                <PriceBlock type="full" theme={mentors.mentorPage.theme}/>
+                <PriceBlock type="full" theme={mentor.mentor.entity.theme}/>
               </PageBlock>}
 
               <PageBlock className={styles.root__pageBlock}>
                 <Typography tag="h3" className={styles.root__pageHeader}>С чем могу помочь</Typography>
                 <ul className={styles.root__list}>
-                  {mentors.mentorPage.solutions !== undefined && (mentors.mentorPage.solutions as Array<any>).map((item: any) => (
+                  {mentor.mentor.entity.solutions !== undefined && mentor.mentor.entity.solutions.map((item: any) => (
                     <li key={item.id} className={styles.root__listItem}>{item.description}</li>
                   ))}
                 </ul>
@@ -98,12 +98,12 @@ export const MentorPage: React.FC<RouteComponentProps<MentorParams>> = (props) =
             
               <PageBlock className={styles.root__pageBlock}>
                 <Typography tag="h3" className={styles.root__pageHeader}>Резюме</Typography>
-                <Job jobs={mentors.mentorPage.jobs}></Job>
+                <Job jobs={mentor.mentor.entity.jobs}></Job>
               </PageBlock>
 
               <PageBlock className={styles.root__pageBlock}>
                 <Typography tag="h3" className={styles.root__pageHeader}>Образование</Typography>
-                <Education education={mentors.mentorPage.education}> </Education>
+                <Education education={mentor.mentor.entity.education}> </Education>
               </PageBlock>
             </div>
           </>
@@ -113,7 +113,7 @@ export const MentorPage: React.FC<RouteComponentProps<MentorParams>> = (props) =
       </div>
       {/* <Typography tag="h1" preset="h1">
         Ментор 
-        {mentors.mentorPage !== undefined && mentors.mentorPage.firstName}
+        {mentor.mentor.entity !== undefined && mentor.mentor.entity.firstName}
       </Typography> */}
 
     </Page>

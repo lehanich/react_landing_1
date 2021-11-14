@@ -1,4 +1,4 @@
-import React , { useEffect, useCallback, useState, useRef } from "react";
+import React , { useEffect, useCallback, useState, useRef, KeyboardEvent } from "react";
 import clsx from "clsx";
 import { useInput } from "../../hooks/useInput.js";
 import { useAppDispatch, useAppSelector } from "../../app/hook";
@@ -9,9 +9,9 @@ import { ITag } from "../../app/interfaces/ITag";
 import styles from "./search.module.scss";
 
 export type SearchProps = {
-  readonly tags?: [] | ITag[];
+  readonly tags?: ITag[];
 	readonly className?: string;
-	readonly pagination?: any | { page: 1, limit: 10 };
+	readonly pagination?: { page: number, limit: number };
 };
 
 export const Search: React.FC<SearchProps> = ({
@@ -20,10 +20,10 @@ export const Search: React.FC<SearchProps> = ({
 }) => {
 	const dispatch = useAppDispatch();
   const [searchString, setSearchString] = useInput(''); // результат заполнения поисковой строки
-	const [searchArr, setSearchArr] = useState<any[]>([]); // массив с id тегов для фильтра
-	const [tagsOut,setTagsOut] = useState<any[]>([]); // список тегов в результатах поиска
-	const [tagsOutSearchLine,setTagsOutSearchLine] = useState<any[]>([]); // список телгов в строке поиска (после клика)
-	const wrapperRef:any = useRef<HTMLHeadingElement>(null); // ref выподающего списка тегов
+	const [searchArr, setSearchArr] = useState<number[]>([]); // массив с id тегов для фильтра
+	const [tagsOut,setTagsOut] = useState<ITag[]>([]); // список тегов в результатах поиска
+	const [tagsOutSearchLine,setTagsOutSearchLine] = useState<ITag[]>([]); // список телгов в строке поиска (после клика)
+	const wrapperRef = useRef<HTMLHeadingElement>(null); // ref выподающего списка тегов
 
 	// const [getPagination, setPagination] = useState<any>({...pagination});
 	const {
@@ -50,44 +50,46 @@ export const Search: React.FC<SearchProps> = ({
 		setTagsOut(tags.entities);
   }, [tag, tags]);
 
-	const compareTags = (tags:any,val:any) => {
+	const compareTags = (tags:ITag[],val:string) => {
 		console.log(tags)
 		setTagsOut([])
-		let buf : [] = [];
-		if (tags.entities.length > 0) {
-			(tags.entities as Array<ITag>).forEach((item, index) => {
+		// let buf : ITag[] = [];
+		if (tags.length > 0) {
+			tags.forEach((item:ITag) => {
 				let checkName:string = "";
-				if (item.name===undefined) {
-					if (item.nameRu===undefined) {
-						checkName = ""
-					} else {
-						checkName = item.nameRu
-					}
-				} else {
-					checkName = item.name
-				}
+				// if (item.name===undefined) {
+				// 	if (item.nameRu===undefined) {
+				// 		checkName = ""
+				// 	} else {
+				// 		checkName = item.nameRu
+				// 	}
+				// } else {
+					checkName = item.nameRu===undefined ? "" : item.nameRu
+				// }
 				if (findString(checkName,val) === true) {
-					(buf as Array<ITag>).push(item);
-					// setTagsOut(tagsOut  => [...tagsOut, item]); // не сработало
+					// buf.push(item);
+					setTagsOut(tagsOut  => [...tagsOut, item]); // не сработало
 				}
 			})
 		}
-		setTagsOut(buf)
+		// setTagsOut(buf)
 	}
   const handler = useCallback(debounce(compareTags, 500), []);
 
 	const onInputClick = () => {
-		const wrapper:any = wrapperRef.current;
-    wrapper.classList.toggle(styles.root__result_is_open)
+		if (wrapperRef.current) {
+			const wrapper:HTMLHeadingElement = wrapperRef.current;
+			wrapper.classList.toggle(styles.root__result_is_open)
+		}
 	}
 
-	const onChange = (event: any) => {
+	const onChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
 		const val = event.target.value
 		setSearchString(event)
-    handler(tags,val);
+    handler(tags.entities,val);
  	};
 
-	const onSubmit = (event:any) => {
+	const onSubmit = (event: React.FormEvent<HTMLInputElement>) => {
 			event.preventDefault();
 			dispatch(getMentors({
 				filters: {tagIds: [...searchArr]},
@@ -95,20 +97,23 @@ export const Search: React.FC<SearchProps> = ({
 			}));       
 	};
 
-	const onAddFilterTag = (id:any|number) => {
+	const onAddFilterTag = (id:number) => {
 		setSearchArr(searchArr => [...searchArr, id]);
 		// console.log(searchArr)
 
 		const item = tags.entities.find(item => item.id === id)
-		setTagsOutSearchLine(tagsOutSearchLine => [...tagsOutSearchLine, item]);
+		if (item !== undefined) {
+			setTagsOutSearchLine(tagsOutSearchLine => [...tagsOutSearchLine, item]);
+		}
 		// console.log(tagsOutSearchLine)
-
-		const wrapper:any = wrapperRef.current;
-    wrapper.classList.remove(styles.root__result_is_open)
+		if (wrapperRef.current) {
+			const wrapper:HTMLHeadingElement = wrapperRef.current;
+			wrapper.classList.remove(styles.root__result_is_open)
+		}
 	}
 
-	const onDeleteFilterTag = (id:any|number) => {
-		let buf: [] | any[] = [...searchArr];
+	const onDeleteFilterTag = (id:ITag) => {
+		const buf: number[] = [...searchArr];
 		let index = buf.indexOf(id.id);
 
 		if (index > -1) {
@@ -117,29 +122,32 @@ export const Search: React.FC<SearchProps> = ({
 		setSearchArr(buf);
 
 		const item = tagsOutSearchLine.find(item => item.id === id.id)
-		buf = [...tagsOutSearchLine]
-		index = buf.indexOf(item);
-		if (index > -1) {
-			buf.splice(index, 1);
+		const buf2: ITag[] = [...tagsOutSearchLine]
+		if (item !== undefined) {
+			index = buf2.indexOf(item);
 		}
-		setTagsOutSearchLine(buf)
+		if (index > -1) {
+			buf2.splice(index, 1);
+		}
+		setTagsOutSearchLine(buf2)
 	}
 
-	const handleKeyUp = (event:any) => {
+	const handleKeyUp = (event:KeyboardEvent<HTMLInputElement>) => {
 		if (event.keyCode === 13) { // Enter
+			console.log("enter")
 		}
 	};
 
   return <div className={clsx(styles.root, styles.root__search, className)}>
 		<form action="#" className={clsx(styles.root__result_wrap,)}>
 			<div className={styles.root__searchLine}>
-				{tagsOutSearchLine.map((item: any) => (
+				{tagsOutSearchLine.map((item: ITag) => (
 					<div
 						key={item.id}
 						onClick={() => onDeleteFilterTag(item)}
 						className={clsx(styles.root__tagsButton)}
 					>
-						{item.name !==undefined && item.name}
+						{/* {item.name !==undefined && item.name} */}
 						{item.nameRu !==undefined && item.nameRu}
 					</div>
 				))}
@@ -158,13 +166,14 @@ export const Search: React.FC<SearchProps> = ({
 			<input type="button" className={styles.root__button} onClick={onSubmit} value="Поиск"/>
 			<div ref={wrapperRef} className={clsx(styles.root__result,)}>
 				{/* <TagsList tags={tagsOut} className="search__result-list" mode="search" /> надо получать эвент из дочернего компонента */}
-				{(tagsOut as Array<ITag>).map((item: any) => (
+				{tagsOut.map((item:ITag) => (
 					<div
 						key={item.id}
 						onClick={() => onAddFilterTag(item.id)}
 						className={clsx(styles.root__searchItem)}
 					>
-						{item.name !==undefined && item.name}{item.nameRu !==undefined && item.nameRu}
+						{/* {item.name !==undefined && item.name} */}
+						{item.nameRu !==undefined && item.nameRu}
 					</div>
 				))}
 			</div>
