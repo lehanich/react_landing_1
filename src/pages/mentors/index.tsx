@@ -1,48 +1,56 @@
 import clsx from "clsx";
-import React, { useEffect, useState } from "react";
-import { increment, setValue } from "../../app/features/counter";
-import { getAllTags } from "../../app/features/tag/thunks/getAllTags";
+import React, { useEffect, useState, useCallback } from "react";
+import { changePage} from "../../app/features/mentor";
 import { getMentors } from "../../app/features/mentor/thunks/getMentors";
 import { useAppDispatch, useAppSelector } from "../../app/hook";
 import { WithSkeleton } from "../../components/WithSkeleton";
 import { Page } from "../../prebuilt/components/Page";
 import { Typography } from "../../prebuilt/components/Typography";
 import { Listing } from "../../prebuilt/components/Listing";
-import { getTagById } from "../../app/features/tag/thunks/getTagById";
 import { MentorPreview } from "../../components/MentorPreview";
 import { Search } from "../../components/Search"
 import { PageBlock } from "../../prebuilt/components/PageBlock";
+import { Pagination } from "../../components/Pagination"
 import styles from "./mentors.module.scss"
 
 export const MentorsPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const {
-    tag: { tags },
     mentors: {listing}
   } = useAppSelector();
 
-  const [getPagination, setPagination] = useState<any>({page: 1, limit: 10});
+  const [searchArray, setSearchArr] = useState<number[]>([]);
 
   useEffect(() => {
-    dispatch(getAllTags());
-    dispatch(getTagById(1));
-  }, [dispatch]);
+    dispatch(getMentors({ filters: {tagIds: [...searchArray]}, pagination: { ...listing.paginations }}));
+  }, [listing.paginations]);
 
-  const onNextPage = () => {
-    const buf = {...getPagination};
-    buf.page++
-    setPagination(buf)
-    // console.log(getPagination)
-  }
+  const onPageChange = useCallback((currentPage: number) => {
+    dispatch(changePage(currentPage));
+  }, [dispatch, listing.paginations.page, listing.mentors.count]);
 
-  const onPrevPage = () => {
-    const buf = {...getPagination};
-    if (buf.page > 1 ) {
-      buf.page--
+  const onAddSearchTag = useCallback((tagId: number) => {
+    const findItem = searchArray.indexOf(tagId);
+
+		if (findItem < 0) {
+      setSearchArr(searchArray => [...searchArray, tagId]);
     }
-    setPagination(buf)
-    // console.log(getPagination)
-  }
+  }, [searchArray,setSearchArr])
+
+  const onDelSearchTag = useCallback((tagId: number) => {
+    let findItem = searchArray.indexOf(tagId);
+
+		if (findItem > -1) {
+      const copy = [...searchArray];
+
+			copy.splice(findItem, 1);
+      setSearchArr(copy)
+		}
+  }, [searchArray,setSearchArr])
+
+  const onSearch = useCallback(() => {
+    dispatch(getMentors({ filters: {tagIds: [...searchArray]}, pagination: { ...listing.paginations }}));
+  }, [searchArray, listing]);
 
   return (
     <Page title="Менторы - Solvery.io">
@@ -50,42 +58,32 @@ export const MentorsPage: React.FC = () => {
         Поиск менторов Solvery.io!
       </Typography>
       <PageBlock className={styles.root__pageBlock}>
-        <Search pagination={getPagination}/>
+        <Search
+          selectedTags={searchArray}
+          onAddSearchTag={(tagId)=>{onAddSearchTag(tagId)}}
+          onDelSearchTag={(tagId)=>{onDelSearchTag(tagId)}}
+          onSearch={()=>{onSearch()}}
+        />
       </PageBlock>
       <div>
-      {/* {tags.entities.map((tag) => <p key={tag.id}>{tag.nameRu}</p>)}
-        { tags.isLoading && "loading..." }
-        { !tags.isLoading && tags.entities.length > 0 &&
-          tags.entities.map((tag) => <p key={tag.id}>{tag.nameRu}</p>)}
-
-        { !tags.isLoading && !tags.error && tags.entities.length === 0 && <p>no data</p>}
-
-        {tags.error && (
-          <p>
-            <strong>{tags.error}</strong>
-          </p>
-        )} */}
         <WithSkeleton
           isLoading={listing.mentors.isLoading}
           isEmpty={listing.mentors.entities === null || listing.mentors.entities.length === 0 }
           error={listing.mentors.error}
         >
-          {/* <Listing>
-          {tags.entities.map((tag) => (
-            <p key={tag.id}>{tag.nameRu}</p>
-          ))}
-          </Listing> */}
           <Typography tag="p" className={styles.root__pageBlock}>Доступно {listing.mentors.count} настравников</Typography>
           <Listing className={styles.root__pageBlock}>
             {listing.mentors.entities !== null && listing.mentors.entities.map((mentor) => (
               <MentorPreview key={mentor.id} mentor={mentor}></MentorPreview>
             ))}
           </Listing>
-          <div className={clsx(styles.root__pageBlock,styles.root__paginationLine)}>
-            <button type="button" onClick={onPrevPage} className={styles.root__button}>назад</button>
-            <span>{getPagination.page}</span>
-            <button type="button" onClick={onNextPage} className={styles.root__button}>далее</button>
-          </div>
+          <Pagination
+            className={clsx(styles.root__pageBlock)}
+            page={listing.paginations.page}
+            limit={listing.paginations.limit}
+            totalItemsCount={listing.mentors.count}
+            onPageChange={(page) => {onPageChange(page)}}
+          />
         </WithSkeleton>
       </div>
     </Page>

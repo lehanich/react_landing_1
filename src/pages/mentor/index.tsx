@@ -111,10 +111,6 @@ export const MentorPage: React.FC<RouteComponentProps<MentorParams>> = (props) =
         </WithSkeleton>
         
       </div>
-      {/* <Typography tag="h1" preset="h1">
-        Ментор 
-        {mentor.mentor.entity !== undefined && mentor.mentor.entity.firstName}
-      </Typography> */}
 
     </Page>
   );

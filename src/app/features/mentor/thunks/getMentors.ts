@@ -1,21 +1,23 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IMentors } from '../../../interfaces/IMentors';
+import { IMentor } from '../../../interfaces/IMentor';
+import { IMentorFilters } from '../../../interfaces/IMentorFilters';
 import { MentorApi } from './MentorApi';
 
 // import * as fs from 'fs';
 
 export const getMentors = createAsyncThunk (
   'mentor/getFiltered',
-  async (allFilters?: any) => {
-    const mentors = await MentorApi.POST<IMentors>('getFiltered',
+  async (allFilters?: IMentorFilters) => {
+    const mentors = await MentorApi.POST<{ mentors: IMentor[], totalMentorsCount: number}>('getFiltered',
       {
-        filters: { ...allFilters.filters },
-        pagination: { ...allFilters.pagination }
+        ...allFilters
+        // filters: { ...allFilters.filters },
+        // pagination: { ...allFilters.pagination }
       });
-      console.log(mentors)
+      // console.log(mentors)
       
-      var data = new FormData();
-      data.append('../../../data/mentors.json', JSON.stringify(mentors));
+      // var data = new FormData();
+      // data.append('../../../data/mentors.json', JSON.stringify(mentors));
       // data.append("data" , JSON.stringify(mentors));
       // console.log(data)
       // var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
@@ -28,6 +30,7 @@ export const getMentors = createAsyncThunk (
       //       return console.error(err);
       //   }
       // });
+
     return mentors;
   }
 )

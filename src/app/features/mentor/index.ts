@@ -47,7 +47,35 @@ const initialState: MentorState = {
 const mentorSlice = createSlice({
   name: 'mentor',
   initialState,
-  reducers: { },
+  reducers: {
+    prevPage(state) {
+      if (state.listing.paginations.page > 1) {
+        state.listing.paginations.page -= 1;
+      }
+    },
+
+    nextPage(state) {
+      const { limit, page } = state.listing.paginations
+      const check:number = Math.floor(state.listing.mentors.count / (limit + page + 1))
+      if (check > 0){
+        state.listing.paginations.page += 1;
+      }
+    },
+
+    changePage(state, action) {
+      if (state.listing.paginations.page > action.payload ) {
+        if (state.listing.paginations.page > 1) {
+          state.listing.paginations.page = action.payload;
+        }
+      } else {
+        const { limit, page } = state.listing.paginations
+        const check:number = Math.floor(state.listing.mentors.count / (limit + page + action.payload))
+        if (check > 0){
+          state.listing.paginations.page = action.payload;
+        }
+      }
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(getMentors.pending, (state) => {
       state.listing.mentors.isLoading = true;
@@ -81,4 +109,5 @@ const mentorSlice = createSlice({
   },
 });
 
+export const { prevPage, nextPage, changePage } = mentorSlice.actions;
 export default mentorSlice.reducer;

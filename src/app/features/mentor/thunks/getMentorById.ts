@@ -1,13 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IMentorPage } from '../../../interfaces/IMentorPage';
+import { IMentor } from '../../../interfaces/IMentor';
 
 import { MentorPageApi } from './MentorApi';
 
 export const getMentorById = createAsyncThunk (
-    'user/getById',
-    async (id: number) => {
-        const tag = await MentorPageApi.POST<IMentorPage>('getById', {id });
+  'user/getById',
+  async (id: number) => {
+    const tag = await MentorPageApi.POST<{ user: IMentor }>('getById', { id });
 
-        return tag;
-    }
+		return tag;
+  }
 )
