@@ -1,28 +1,30 @@
 import clsx from "clsx";
 import React from "react";
-import { Typography } from "../../../../prebuilt/components/Typography";
 import styles from "./job.module.scss";
+import { MentorJob } from "../../../../app/interfaces/MentorJob";
 
 export type JobProps = {
   readonly className?: string;
-  readonly jobs: any;
+  readonly jobs: MentorJob[];
 };
 
 const monthNames = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
+                    "July", "August", "September", "October", "November", "December"
 ];
 
 export const Job: React.FC<JobProps> = ({ className, jobs }) => {
-
+  
   function displayDate (getDate:number) {
     const d= new Date(getDate);
-    return `${monthNames[d.getMonth()]} ${d.getFullYear()}`
+    return `${monthNames[d.getMonth()]} ${d.getFullYear()}`;
   }
 
   return (
     <>
-      {jobs !== undefined && (jobs as Array<any>).map((item: any) => (
-        <div key={item.id} className={styles.root}>
+      {jobs && jobs.map((item) => (
+        <div
+          key={item.id}
+          className={clsx(styles.root, className)}>
           <div className={styles.root__time}>
             {displayDate(item.startDate)}&nbsp;&mdash;&nbsp;
             {item.isUntilNow && "настоящее время"}
@@ -30,7 +32,7 @@ export const Job: React.FC<JobProps> = ({ className, jobs }) => {
           </div>
           <div className={styles.root__info}>
             <a href={item.employerWebsite}>{item.employer}</a> - {item.position}
-          </div>            
+          </div>
         </div>
       ))}
     </>

@@ -18,23 +18,22 @@ export const Pagination: React.FC<PaginationProps> = (
     totalItemsCount,
     onPageChange
   }) => {
-  
-  const check:number = Math.floor(totalItemsCount / (limit + page + 1))
+  const check:number = Math.floor(totalItemsCount / (limit + page + 1));
 
   return (
     <div className={clsx(styles.root__paginationLine, className)}>
       <button
-      type="button"
-      disabled={page===1}
-      onClick={() => {onPageChange(page-1)}}
-      className={styles.root__button}>
+        type="button"
+        disabled={page===1}
+        onClick={() => {onPageChange(page-1);}}
+        className={styles.root__button}>
         назад
       </button>
       <span>{page}</span>
       <button
         type="button"
         disabled={check<1}
-        onClick={() => {onPageChange(page+1)}}
+        onClick={() => {onPageChange(page+1);}}
         className={styles.root__button}>
           далее
       </button>

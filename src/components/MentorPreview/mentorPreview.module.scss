@@ -1,42 +1,12 @@
+@import "../../prebuilt/scss/mixins.scss";
+
 .root {
   display: flex;
-  flex-direction: row;
 	justify-content: space-between;
-
-	background-color: #fff;
 	padding: 24px;
 	border-radius: 10px;
+	background-color: #fff;
 	border: 1px solid rgba(23,26,31,.1);
-
-	&_mobile {
-		flex-direction: column;
-	}
-
-	&__avatar {
-		flex-basis: 10%;
-		margin-right: 20px;
-	}
-
-	&__avatar_mobile {
-		margin-right: 20px;
-	}
-
-	&__blockAvatar {
-		margin-right: 20px;
-	}
-
-	&__blockAvatar_mobile {
-		display: flex;
-		margin-bottom: 15px;
-	}
-
-	&__info {
-		flex-basis: 80%;
-	}
-
-	&__info_mobile {
-		margin-bottom: 15px;
-	}
 
 	&__previewInfo {
 		margin-right: 20px;
@@ -82,4 +52,40 @@
 		flex-basis: 10%;
 	}
 
+	@include breakpoint("xss") {
+		flex-direction: column;
+
+		&__info {
+			flex-basis: 80%;
+		}
+
+		&__blockAvatar {
+			margin-right: 20px;
+			display: flex;
+			margin-bottom: 15px;
+		}
+
+		&__avatar {
+			margin-right: 20px;
+			flex-basis: auto;
+		}
+
+  }
+
+  @include breakpoint("md") {
+		flex-direction: row;
+
+		&__info {
+			margin-bottom: 15px;
+
+		}
+		&__blockAvatar {
+			margin-right: 20px;
+		}
+
+		&__avatar {
+			flex-basis: 80%;
+			margin-right: 20px;
+		}
+	}
 }

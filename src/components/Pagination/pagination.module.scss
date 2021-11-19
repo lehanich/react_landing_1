@@ -1,9 +1,5 @@
 .root {
 	&__button {
-    color: #fff;
-    border-color: #09f;
-    background-color: #09f;
-
 		display: inline-block;
     padding: .625rem 1.125rem;
     border-radius: 5px;
@@ -13,6 +9,9 @@
     font-weight: 500;
     cursor: pointer;
     outline: none;
+    color: #fff;
+    border-color: #09f;
+    background-color: #09f;
 		&:hover {
 			background-color: #07f;
 		}

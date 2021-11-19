@@ -1,6 +1,6 @@
 .DS_Store
 node_modules
-/data
+/public/data
 /dist
 /1
 /bower_components

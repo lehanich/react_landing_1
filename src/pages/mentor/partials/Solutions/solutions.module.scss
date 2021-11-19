@@ -1,0 +1,11 @@
+.root {
+  &__list {
+    margin-left: 20px;
+  }
+
+  &__listItem {
+    text-align: left;
+    list-style: circle;
+    margin-bottom: 10px;
+  }
+}

@@ -1,5 +1,4 @@
 import React from "react";
-import { rootCertificates } from "tls";
 import { Loader } from "../Loader";
 import styles from "./withSkeleton.module.scss";
 
@@ -13,28 +12,28 @@ export type WithSkeletonProps = {
 };
 
 export const WithSkeleton: React.FC<WithSkeletonProps> = ({
-    isLoading,
-    isEmpty,
-    error,
+  isLoading,
+  isEmpty,
+  error,
 
-    skeletonSlot,
-    emptySpaceSlot,
-    children,
+  skeletonSlot,
+  emptySpaceSlot,
+  children,
 }) => {
-    if (!isEmpty && !isLoading && !error) {
-        return <>{children}</>;
-    }
+  if (!isEmpty && !isLoading && !error) {
+    return <>{children}</>;
+  }
 
-    if (isLoading) {
-        return <div className={styles.root}>
-        {skeletonSlot ||
+  if (isLoading) {
+    return <div className={styles.root}>
+      {skeletonSlot ||
             <Loader/>
-        }</div>;
-    }
+      }</div>;
+  }
 
-    if (!isLoading && isEmpty && !error) {
-        return <>{emptySpaceSlot || "no data"}</>;
-    }
+  if (!isLoading && isEmpty && !error) {
+    return <>{emptySpaceSlot || "no data"}</>;
+  }
 
-    return <>{error}</>
-}
+  return <>{error}</>;
+};

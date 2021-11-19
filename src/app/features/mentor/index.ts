@@ -55,8 +55,8 @@ const mentorSlice = createSlice({
     },
 
     nextPage(state) {
-      const { limit, page } = state.listing.paginations
-      const check:number = Math.floor(state.listing.mentors.count / (limit + page + 1))
+      const { limit, page } = state.listing.paginations;
+      const check:number = Math.floor(state.listing.mentors.count / (limit + page + 1));
       if (check > 0){
         state.listing.paginations.page += 1;
       }
@@ -68,8 +68,8 @@ const mentorSlice = createSlice({
           state.listing.paginations.page = action.payload;
         }
       } else {
-        const { limit, page } = state.listing.paginations
-        const check:number = Math.floor(state.listing.mentors.count / (limit + page + action.payload))
+        const { limit, page } = state.listing.paginations;
+        const check:number = Math.floor(state.listing.mentors.count / (limit + page + action.payload));
         if (check > 0){
           state.listing.paginations.page = action.payload;
         }

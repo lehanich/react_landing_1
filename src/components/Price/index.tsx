@@ -5,26 +5,29 @@ import { Typography } from "../../prebuilt/components/Typography";
 export type MentorPreviewProps = {
   readonly price: number;
 	readonly currency: string;
-	readonly tag?: any;
+	readonly tag?: React.ElementType;
 	readonly className?: string;
 };
 
 export const Price: React.FC<MentorPreviewProps> = ({
   price,
-	currency,
-	className,
-	tag = "span"
+  currency,
+  className,
+  tag = "span"
 }) => {
-	function printPrice () {
-		if (currency === "usd") {
-			return Math.round(price * 75)
-		} else {
-			return Math.round(price)
-		}
-	}
-  return <>
-	<Typography tag={tag} className={clsx(className)}>  
-		{printPrice()}&#8381;&nbsp;/&nbsp;час
-  </Typography>
-	</>
-}
+  const _price = currency === "usd" ? Math.round(price * 75) : Math.round(price);
+  const printPrice = _price.toLocaleString("ru-RU", {
+    currency: "RUB",
+    style: "currency",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  });
+
+  return (
+    <Typography
+      tag={tag}
+      className={clsx(className)}>  
+      {printPrice}&nbsp;/&nbsp;час
+    </Typography>
+  );
+};

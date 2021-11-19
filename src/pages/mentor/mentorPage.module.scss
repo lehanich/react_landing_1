@@ -1,41 +1,51 @@
+
+@import "../../prebuilt/scss/mixins.scss";
+
 .root {
   &__wrap {
     display: flex;
     flex-direction: row;
   }
 
-  &__sidebar {
-    margin-right: 20px;
-    flex-basis: 30%;
-  }
-
-  &__content {
-    flex-basis: 70%;
-  }
-	&__content_mobile {
-    flex-basis: 100%;
-  }
   &__pageBlock {
     margin-bottom: 20px;
   }
 
-	&__pageHeader {
-    margin-bottom: 10px;
-		font-weight: 600;
+  @include breakpoint("xss") {
+    &__price_mobile {
+      display: block;
+    }
+    &__sidebar {
+      display: none;
+    }
+    &__content {
+      flex-basis: 100%;
+    }
+    &__avatar {
+      display: none;
+      &_mobile {
+        display: block;
+        margin-bottom: 15px;
+      }
+    }
   }
 
-  &__list {
-		margin-left: 20px;
+  @include breakpoint("md") {
+    &__price_mobile {
+      display: none;
+    }
+    &__sidebar {
+      display: block;
+      margin-right: 20px;
+    }
+    &__content {
+      flex-basis: 70%;
+    }
+    &__avatar {
+      display: block;
+      &_mobile {
+        display: none;
+      }
+    }
   }
-
-  &__listItem {
-    text-align: left;
-    list-style: circle;
-		margin-bottom: 10px;
-  }
-
-	&__avatar_mobile {
-		margin-bottom: 15px;
-  }
-
 }

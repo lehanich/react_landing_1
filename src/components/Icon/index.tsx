@@ -12,6 +12,7 @@ export const Icon: React.FC<IconProps> = ({
   children,
   size = "stretch",
 }) => {
+  
   return (
     <span className={clsx(styles.root, styles[size], className)}>
       {children}

@@ -8,28 +8,15 @@ import { MentorApi } from './MentorApi';
 export const getMentors = createAsyncThunk (
   'mentor/getFiltered',
   async (allFilters?: IMentorFilters) => {
-    const mentors = await MentorApi.POST<{ mentors: IMentor[], totalMentorsCount: number}>('getFiltered',
-      {
-        ...allFilters
-        // filters: { ...allFilters.filters },
-        // pagination: { ...allFilters.pagination }
-      });
-      // console.log(mentors)
-      
-      // var data = new FormData();
-      // data.append('../../../data/mentors.json', JSON.stringify(mentors));
-      // data.append("data" , JSON.stringify(mentors));
-      // console.log(data)
-      // var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
-      // xhr.open( 'post', '../../../data/mentors.json', true );
-      // xhr.send(data);
-      // const fs = require('fs');
-      // // fs.appendFileSync('../../../data/mentors.json', JSON.stringify(mentors));
-      // fs.writeFile('log.txt', '../../../data/mentors.json',  JSON.stringify(mentors),  function(err:any) {
-      //   if (err) {
-      //       return console.error(err);
-      //   }
-      // });
+    // const mentors = await MentorApi.POST<{ mentors: IMentor[], totalMentorsCount: number}>('getFiltered',
+    //   {
+    //     ...allFilters
+    //   });
+    const res = await fetch('/data/mentors.json')
+    if(res.status !== 200){
+      throw new Error("Error with status " + res.status)
+    }
+    const mentors = await res.json()
 
     return mentors;
   }
