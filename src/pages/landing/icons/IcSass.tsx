@@ -1,3 +1,5 @@
+import React from "react";
+
 export const IcSass: React.FC = () => {
   return (
     <svg

@@ -1,7 +1,8 @@
 import clsx from "clsx";
 import React from "react";
-import styles from "./solutions.module.scss";
+import { PageBlock } from "../../../../prebuilt/components/PageBlock";
 import { MentorSolution } from "../../../../app/interfaces/MentorSolution";
+import styles from "./solutions.module.scss";
 
 export type SolutionsProps = {
   readonly className?: string;
@@ -11,8 +12,12 @@ export type SolutionsProps = {
 export const Solutions: React.FC<SolutionsProps> = ({ className, solutions }) => {
 
   return (
-    <>
-      <ul className={clsx(styles.root__list, className)}>
+    <PageBlock
+      className={clsx(styles.root__pageBlock, className)}
+      hasHeader
+      headerString="С чем могу помочь"
+      headerTag="h3">
+      <ul className={clsx(styles.root__list)}>
         {solutions && solutions.map((item) => (
           <li
             key={item.id}
@@ -21,6 +26,6 @@ export const Solutions: React.FC<SolutionsProps> = ({ className, solutions }) =>
           </li>
         ))}
       </ul>
-    </>
+    </PageBlock>
   );
 };

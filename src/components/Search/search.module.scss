@@ -6,14 +6,19 @@
 		margin-bottom: 10px;
 	}
 
+	&__wrap {
+		position: relative;
+	}
+
 	&__searchLine {
 		display:flex;
+		flex-wrap: wrap;
 		width: 100%;
-		border: 1px solid #40a9ff;
 		padding: 5px;
-		border-radius: 5px;
-		outline:none;
 		margin-bottom: 10px;
+		border-radius: 5px;
+		border: 1px solid #40a9ff;
+		outline:none;
 
 		&:hover {
 			border: 1px solid #40a9ff;
@@ -36,18 +41,8 @@
 		}
 	}
 
-	&__searchItem {
-		cursor: pointer;
-		padding: 3px;
-		background-color: #fff;
-		transition: background-color 1s linear;
-		&:hover {
-			background-color: #e6f7ff;
-		}
-	}
-
 	&__input {
-		width: 100%;
+		flex-grow: 3;
 		border: none;
 		padding: 5px;
 		border-radius: 5px;
@@ -74,9 +69,6 @@
 		}
 	}
 
-	&__result_wrap {
-		position: relative;
-	}
 	&__result {
 		top: 39px;
 		position: absolute;
@@ -85,17 +77,10 @@
 		width: 100%;
 		background: #fff;
 		overflow: overlay;
-
 		transition: display height .1s ;
-		// transform: scaleY(0) scaleX(0) translateY(0px) translateX(0px);
-		// -webkit-transform: scaleY(0) scaleX(0) translateY(0px) translateX(0px);
-		// -moz-transition: 1s;
-    // -webkit-transition: 1s;
-    // -o-transition: 1s;
-    // transition: 1s;
 	}
 
-	&__result_is_open {
+	&__result_open {
 		display: block;
 		height: 200px;
 		padding: 10px;
@@ -107,30 +92,8 @@
 		transition-duration: .1s;
 		transition-timing-function: ease-in, ease, linear;
 		transform-origin: top ;
-		// -webkit-transform: scaleY(1) scaleX(1) translateY(0px) translateX(0px);
-		// transform: scaleY(1) scaleX(1) translateY(0px) translateX(0px);
-    // -moz-transition: .3s;
-    // -webkit-transition: .3s;
-    // -o-transition: .3s;
-    // transition: .3s;
 	}
-	&__tagsButton {
-		display: inline-block;
-		margin-top: 3px;
-    margin-right: 4px;
-		padding: 0 3px;
-    font-size: .9em;
-    background-color: #fafafa;
-    border: 1px solid #0f1113;
-    height: 24px;
-    line-height:22px;
-		background-color: transparent!important;
-    border-radius: 10px;
-    color: #0f1113;
-		cursor: pointer;
-		overflow: hidden;
-    min-width: 57px;
-	}
+
 	&__button {
     color: #fff;
     border-color: #09f;
@@ -150,4 +113,3 @@
 		}
   }
 }
-

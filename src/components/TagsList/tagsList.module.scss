@@ -8,6 +8,7 @@
 			background-color: #e6f7ff;
 		}
 	}
+
 	&__profileItem {
 		margin-top: 5px;
     font-size: 11px;
@@ -18,23 +19,4 @@
     cursor: pointer;
 		margin-left: 5px;
 	}
-}
-
-.search {
-
-}
-
-.profile {
-
-}
-.search__result-list{
-	// max-height: 200px;
-  // position: absolute;
-  // width: 100%;
-  // background: #fff;
-  // overflow: overlay;
-  // display: block;
-  // padding: 10px;
-  // border: 1px solid rgba(23, 26, 31, 0.1);
-	// border-radius: 0 0 10px 10px;
 }

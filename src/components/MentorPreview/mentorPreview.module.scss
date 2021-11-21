@@ -8,45 +8,6 @@
 	background-color: #fff;
 	border: 1px solid rgba(23,26,31,.1);
 
-	&__previewInfo {
-		margin-right: 20px;
-	}
-
-	&__infoBlock {
-		margin-bottom: 5px;
-	}
-
-	&__userName {
-		display: block;
-		font-size: 1.5em;
-    font-weight: 600;
-		color: #0f1113;
-	}
-
-	&__userGEO {
-		display: block;
-		color: #b6bdc1;
-		font-size: 1em;
-	}
-  
-	&__userSessions {
-		display: block;
-		color: #b6bdc1;
-		font-size: 1em;
-	}
-
-	&__userSessionsNumber {
-		color: #0f1113;
-		font-size: 1em;
-		font-weight: 600;
-	}
-
-	&__userCompany {
-		display: block;
-		color: #0f1113;
-		font-size: 1em;
-	}
-
 	&__price {
 		width: 200px;
 		flex-basis: 10%;
@@ -69,7 +30,6 @@
 			margin-right: 20px;
 			flex-basis: auto;
 		}
-
   }
 
   @include breakpoint("md") {

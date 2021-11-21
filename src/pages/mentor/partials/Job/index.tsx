@@ -1,7 +1,8 @@
 import clsx from "clsx";
 import React from "react";
-import styles from "./job.module.scss";
+import { PageBlock } from "../../../../prebuilt/components/PageBlock";
 import { MentorJob } from "../../../../app/interfaces/MentorJob";
+import styles from "./job.module.scss";
 
 export type JobProps = {
   readonly className?: string;
@@ -20,11 +21,15 @@ export const Job: React.FC<JobProps> = ({ className, jobs }) => {
   }
 
   return (
-    <>
+    <PageBlock
+      className={clsx(styles.root__pageBlock, className)}
+      hasHeader
+      headerString="Резюме"
+      headerTag="h3">
       {jobs && jobs.map((item) => (
         <div
           key={item.id}
-          className={clsx(styles.root, className)}>
+          className={clsx(styles.root)}>
           <div className={styles.root__time}>
             {displayDate(item.startDate)}&nbsp;&mdash;&nbsp;
             {item.isUntilNow && "настоящее время"}
@@ -35,6 +40,6 @@ export const Job: React.FC<JobProps> = ({ className, jobs }) => {
           </div>
         </div>
       ))}
-    </>
+    </PageBlock>
   );
 };

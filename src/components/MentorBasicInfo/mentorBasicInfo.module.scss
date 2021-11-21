@@ -1,26 +1,21 @@
+@import "../../prebuilt/scss/mixins.scss";
+
 .root {
   background-color: #fff;
   
   &__info {
     margin-bottom: 5px;
   }
-    
-  &__sessions {
-    display: block;
-    color: #b6bdc1;
-    font-size: 1em;
+
+  @include breakpoint("xss") {
+		&__info {
+			margin-bottom: 15px;
+		}
   }
-  
-  &__sessionsNumber {
-    color: #0f1113;
-    font-size: 1em;
-    font-weight: 600;
+
+  @include breakpoint("md") {
+		&__info {
+			flex-basis: 80%;
+		}
 	}
-  
-  &__company {
-    display: block;
-    color: #0f1113;
-    font-size: 1em;
-	}
-  
 }

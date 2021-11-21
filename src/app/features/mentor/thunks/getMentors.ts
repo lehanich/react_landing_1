@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IMentor } from '../../../interfaces/IMentor';
+// import { IMentor } from '../../../interfaces/IMentor';
 import { IMentorFilters } from '../../../interfaces/IMentorFilters';
-import { MentorApi } from './MentorApi';
+// import { MentorApi } from './MentorApi';
 
 // import * as fs from 'fs';
 
@@ -12,12 +12,13 @@ export const getMentors = createAsyncThunk (
     //   {
     //     ...allFilters
     //   });
-    const res = await fetch('/data/mentors.json')
+    console.log(allFilters);
+    const res = await fetch('/data/mentors.json');
     if(res.status !== 200){
-      throw new Error("Error with status " + res.status)
+      throw new Error("Error with status " + res.status);
     }
-    const mentors = await res.json()
+    const mentors = await res.json();
 
     return mentors;
   }
-)
+);

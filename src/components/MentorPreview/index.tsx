@@ -23,7 +23,6 @@ export const MentorPreview: React.FC<MentorPreviewProps> = ({
 
   useBreakpoints((breakpoint) => {
     setBreakpoint(breakpoint);
-    console.log(breakpoint);
   });
 
   return (
@@ -31,26 +30,30 @@ export const MentorPreview: React.FC<MentorPreviewProps> = ({
       {mode === "preview" &&
         <div
           className={clsx(styles.root__blockAvatar)}>
-          {breakpoint >= 768 && <Avatar
-            avatar={mentor.avatar}
-            className={styles.root__avatar}
-            size="md"/>}
-          {breakpoint < 768 && <>
+          {breakpoint > 768 &&
             <Avatar
               avatar={mentor.avatar}
               className={styles.root__avatar}
-              size="sm"/>
-            <MentorHead mentor={mentor}/>
-          </>}
+              size="md"/>
+          }
+          {breakpoint <= 768 &&
+            <>
+              <Avatar
+                avatar={mentor.avatar}
+                className={styles.root__avatar}
+                size="sm"/>
+              <MentorHead mentor={mentor}/>
+            </>
+          }
         </div>
       }
-      {breakpoint >= 768 &&
+      {breakpoint > 768 &&
         <MentorBasicInfo
           mentor={mentor}
           hasDisplayName
           className={styles.root__info}/>
       }
-      {breakpoint < 768 &&
+      {breakpoint <= 768 &&
         <MentorBasicInfo
           mentor={mentor}
           className={styles.root__info}/>

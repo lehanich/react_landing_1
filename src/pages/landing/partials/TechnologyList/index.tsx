@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React from "react";
 import { Icon } from "../../../../components/Icon";
 import { Typography } from "../../../../prebuilt/components/Typography";
@@ -49,13 +50,18 @@ export type TechonolyListProps = {
 
 export const TechnologyList: React.FC<TechonolyListProps> = ({ className }) => {
   return (
-    <section className={styles.root}>
-      <Typography className={styles.root__title} tag="h2" preset="h2">
+    <section className={clsx(styles.root, className)}>
+      <Typography
+        className={styles.root__title}
+        tag="h2"
+        preset="h2">
         Познакомимся с технологиями
       </Typography>
       <ul className={styles.root__technologies}>
         {TECHNOLOGIES.map(({ name, icon: IC, description }) => (
-          <li className={styles.root__technology_wrapper}>
+          <li
+            key={name}
+            className={styles.root__technology_wrapper}>
             <div className={styles.root__technology}>
               <div className={styles.root__logo}>
                 <Icon size="stretch">
@@ -70,7 +76,9 @@ export const TechnologyList: React.FC<TechonolyListProps> = ({ className }) => {
                 >
                   {name}
                 </Typography>
-                <Typography tag="p" preset="paragraph1">
+                <Typography
+                  tag="p"
+                  preset="paragraph1">
                   {description}
                 </Typography>
               </div>

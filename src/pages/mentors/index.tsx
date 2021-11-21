@@ -11,12 +11,13 @@ import { MentorPreview } from "../../components/MentorPreview";
 import { Search } from "../../components/Search";
 import { PageBlock } from "../../prebuilt/components/PageBlock";
 import { Pagination } from "../../components/Pagination";
+import { getAvailableMentorsString } from "./helpers";
 import styles from "./mentors.module.scss";
 
 export const MentorsPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const {
-    mentors: {listing}
+    mentors: { listing }
   } = useAppSelector();
   const [searchArray, setSearchArr] = useState<number[]>([]);
 
@@ -24,11 +25,11 @@ export const MentorsPage: React.FC = () => {
     dispatch(getMentors({ filters: {tagIds: [...searchArray]}, pagination: { ...listing.paginations }}));
   }, [listing.paginations]);
 
-  const onPageChange = useCallback((currentPage: number) => {
+  const handlePageChange = useCallback((currentPage: number) => {
     dispatch(changePage(currentPage));
   }, [dispatch, listing.paginations.page, listing.mentors.count]);
 
-  const onAddSearchTag = useCallback((tagId: number) => {
+  const handleAddSearchTag = useCallback((tagId: number) => {
     const findItem = searchArray.indexOf(tagId);
 
     if (findItem < 0) {
@@ -36,7 +37,7 @@ export const MentorsPage: React.FC = () => {
     }
   }, [searchArray,setSearchArr]);
 
-  const onDelSearchTag = useCallback((tagId: number) => {
+  const handleDelSearchTag = useCallback((tagId: number) => {
     let findItem = searchArray.indexOf(tagId);
 
     if (findItem > -1) {
@@ -47,7 +48,7 @@ export const MentorsPage: React.FC = () => {
     }
   }, [searchArray,setSearchArr]);
 
-  const onSearch = useCallback(() => {
+  const handleSearch = useCallback(() => {
     dispatch(getMentors({ filters: {tagIds: [...searchArray]}, pagination: { ...listing.paginations }}));
   }, [searchArray, listing]);
 
@@ -62,19 +63,17 @@ export const MentorsPage: React.FC = () => {
       <PageBlock className={styles.root__pageBlock}>
         <Search
           selectedTags={searchArray}
-          onAddSearchTag={(tagId)=>{onAddSearchTag(tagId);}}
-          onDelSearchTag={(tagId)=>{onDelSearchTag(tagId);}}
-          onSearch={()=>{onSearch();}}
-        />
+          onAddSearchTag={(tagId)=>{handleAddSearchTag(tagId);}}
+          onDelSearchTag={(tagId)=>{handleDelSearchTag(tagId);}}
+          onSearch={()=>{handleSearch();}}/>
       </PageBlock>
       <WithSkeleton
         isLoading={listing.mentors.isLoading}
         isEmpty={listing.mentors.entities === null || listing.mentors.entities.length === 0 }
-        error={listing.mentors.error}
-      >
+        error={listing.mentors.error}>
         <Typography
           tag="p"
-          className={styles.root__pageBlock}>Доступно {listing.mentors.count} настравников
+          className={styles.root__pageBlock}>Доступно {getAvailableMentorsString(listing.mentors.count)}
         </Typography>
         <Listing className={styles.root__pageBlock}>
           {listing.mentors.entities !== null && listing.mentors.entities.map((mentor) => (
@@ -88,8 +87,7 @@ export const MentorsPage: React.FC = () => {
           page={listing.paginations.page}
           limit={listing.paginations.limit}
           totalItemsCount={listing.mentors.count}
-          onPageChange={(page) => {onPageChange(page);}}
-        />
+          onPageChange={(page) => {handlePageChange(page);}}/>
       </WithSkeleton>
       
     </Page>

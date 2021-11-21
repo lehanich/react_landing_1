@@ -10,37 +10,43 @@ export type TagsProps = {
   readonly mentorTags?: MentorTag[];
   readonly className?: string;
   readonly mode:  "search" | "profile";
+  readonly onItemClick?: (tagId:number) => void;
 };
 
 export const TagsList: React.FC<TagsProps> = ({
   tags,
   mentorTags,
   className,
-  mode
+  mode,
+  onItemClick
 }) => {
 
   useEffect(() => {
   }, [tags, mentorTags]);
 
   return <>
-    {mode === "search" && <div className={clsx(styles.root, styles[className === undefined ? "" : className])}>
-      {mode === "search" && tags && tags.map((item) => (
-        <div
-          key={item.id}
-          className={clsx(styles.root__searchItem)} >{item.nameRu !==undefined && item.nameRu}</div>
-      ))}
-    </div>}
-    {mode === "profile" && <div className={clsx(styles.root, styles[className === undefined ? "" : className])}>
-      {mode === "profile" && mentorTags && mentorTags.map((item) => (
-        <Link
-          key={item.id}
-          href={"mentors/"+item.name}
-          className={clsx(styles.root__profileItem)}
-          theme="profile-tag"
-        >
-          {item.name !==undefined && item.name}
-        </Link>
-      ))}
-    </div>}
+    {mode === "search" &&
+      <div className={clsx(styles.root, styles[className === undefined ? "" : className])}>
+        {mode === "search" && tags && onItemClick && tags.map((item) => (
+          <div
+            key={item.id}
+            className={clsx(styles.root__searchItem)}
+            onClick={() => onItemClick(item.id)}
+          >{item.nameRu !==undefined && item.nameRu}</div>
+        ))}
+      </div>}
+    {mode === "profile" &&
+      <div className={clsx(styles.root, styles[className === undefined ? "" : className])}>
+        {mode === "profile" && mentorTags && mentorTags.map((item) => (
+          <Link
+            key={item.id}
+            href={"mentors/"+item.name}
+            className={clsx(styles.root__profileItem)}
+            theme="profile-tag"
+          >
+            {item.name !==undefined && item.name}
+          </Link>
+        ))}
+      </div>}
   </>;
 };

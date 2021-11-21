@@ -1,3 +1,4 @@
+import React from "react";
 import { Page } from "../../prebuilt/components/Page";
 import { Hero } from "./partials/Hero";
 import { Plan } from "./partials/Plan";

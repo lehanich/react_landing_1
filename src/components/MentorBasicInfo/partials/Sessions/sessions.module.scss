@@ -1,0 +1,11 @@
+.root {
+	display: block;
+	color: #b6bdc1;
+	font-size: 1em;
+
+	&__number {
+		color: #0f1113;
+    font-size: 1em;
+    font-weight: 600;
+	}
+}

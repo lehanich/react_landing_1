@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hook";
 import { WithSkeleton } from "../../components/WithSkeleton";
 import { Page } from "../../prebuilt/components/Page";
 import { MentorBasicInfo } from "../../components/MentorBasicInfo";
-import { PriceBlock } from "../../components/PriceBlock";
+import { MentorPriceBlock } from "./partials/MentorPriceBlock";
 import { Avatar } from "../../components/Avatar";
 import { IMentor } from "../../app/interfaces/IMentor";
 import { Solutions } from "./partials/Solutions";
@@ -51,14 +51,10 @@ export const MentorPage: React.FC<MentorPageProps> = (props) => {
                   className={styles.root__avatar}
                   size="lg"/>
               </PageBlock>
-
-              <PageBlock
+              
+              <MentorPriceBlock
                 className={styles.root__pageBlock}
-                hasHeader
-                headerString="Стоимость занятий"
-                headerTag="h3">
-                <PriceBlock theme={mentor.mentor.entity.theme}/>
-              </PageBlock>
+                theme={mentor.mentor.entity.theme}/>
             </div>
 
             <div className={clsx(styles.root__content)}>
@@ -73,37 +69,21 @@ export const MentorPage: React.FC<MentorPageProps> = (props) => {
                   mode="full" />
               </PageBlock>
 
-              <PageBlock
-                className={clsx(styles.root__pageBlock, styles.root__price_mobile)}
-                hasHeader
-                headerString="Стоимость занятий"
-                headerTag="h3">
-                <PriceBlock theme={mentor.mentor.entity.theme}/>
-              </PageBlock>
+              <MentorPriceBlock
+                className={styles.root__price_mobile}
+                theme={mentor.mentor.entity.theme}/>
 
-              <PageBlock
+              <Solutions
                 className={styles.root__pageBlock}
-                hasHeader
-                headerString="С чем могу помочь"
-                headerTag="h3">
-                <Solutions solutions={mentor.mentor.entity.solutions}/>
-              </PageBlock>
+                solutions={mentor.mentor.entity.solutions}/>
             
-              <PageBlock
+              <Job
                 className={styles.root__pageBlock}
-                hasHeader
-                headerString="Резюме"
-                headerTag="h3">
-                <Job jobs={mentor.mentor.entity.jobs}/>
-              </PageBlock>
-   
-              <PageBlock
+                jobs={mentor.mentor.entity.jobs}/>
+
+              <Education
                 className={styles.root__pageBlock}
-                hasHeader
-                headerString="Образование"
-                headerTag="h3">
-                <Education education={mentor.mentor.entity.education}/>
-              </PageBlock>
+                education={mentor.mentor.entity.education}/>
             </div>
           </>
           }

@@ -40,7 +40,7 @@ const tagSlice = createSlice({
 
     builder.addCase(getTagById.fulfilled, (state, action) => {
       console.log(action.payload);
-    })
+    });
   },
 });
 

@@ -1,3 +1,5 @@
+import React from "react";
+
 export const IcJest: React.FC = () => {
   return (
     <svg
